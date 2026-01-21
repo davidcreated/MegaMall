@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:megamall/core/router/app_router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:megamall/core/router/app_router.dart';
 import 'package:megamall/features/product/presentation/widgets/custom_button.dart';
 import 'package:megamall/features/product/presentation/widgets/custom_textfiel.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, size: 24.sp, color: const Color(0xff161616)),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Column(
@@ -30,7 +28,7 @@ class SignupPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Create Account',
+                          'Welcome back to\nMega Mall',
                           style: TextStyle(
                             fontSize: 25.sp,
                             fontWeight: FontWeight.bold,
@@ -38,18 +36,13 @@ class SignupPage extends StatelessWidget {
                         ),
                         SizedBox(height: 10.h),
                         Text(
-                          'Sign up to get started',
+                          'Log In to continue',
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
                         SizedBox(height: 40.h),
-                        const CustomTextField(
-                          label: 'Full Name',
-                          hintText: 'Enter your full name',
-                        ),
-                        SizedBox(height: 20.h),
                         const CustomTextField(
                           label: 'Email',
                           hintText: 'Enter your email',
@@ -76,21 +69,27 @@ class SignupPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
-                    'Already have an account? ',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 14.sp,
+                  TextButton(
+                    onPressed: () {
+                      context.push(AppRouter.resetPassword);
+                    },
+                    child: Text(
+                      'Forgot Password',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      context.push(AppRouter.signup);
                     },
                     child: Text(
-                      'Login',
+                      'Sign up',
                       style: TextStyle(
                         color: Colors.blueAccent,
                         fontSize: 14.sp,
@@ -104,6 +103,6 @@ class SignupPage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    );    
   }
 }
